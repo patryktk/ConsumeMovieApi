@@ -11,14 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 import java.util.List;
 
-@Route("")
+@Route("Consume")
 public class ApiGUI extends VerticalLayout {
 
     ApiController apiController;
     Grid<Movie> grid = new Grid<>(Movie.class);
+    List<Movie> movieList = new ArrayList<>();
     private HorizontalLayout horizontalLayout;
     private VerticalLayout verticalLayout;
-    List<Movie> movieList = new ArrayList<>();
     private TextField nameField;
     private TextField secondField;
     private Movie movie;
@@ -53,34 +53,62 @@ public class ApiGUI extends VerticalLayout {
         deleteButton.addClickListener(buttonClickEvent -> {
             refresh();
             deleteMovie();
+            createGrid();
         });
         Button addButton = new Button("Add");
         addButton.addClickListener(buttonClickEvent -> {
             refresh();
             addMovie();
+            createGrid();
         });
         Button editNameButton = new Button("Edit Name");
         editNameButton.addClickListener(buttonClickEvent -> {
             refresh();
             editName();
+            createGrid();
         });
-        
-        horizontalLayout.add(showGridButton,showOneFilm,deleteButton,addButton, editNameButton);
+        Button editGenreButton = new Button("Edit Genre");
+        editGenreButton.addClickListener(buttonClickEvent -> {
+            refresh();
+            editGenre();
+            createGrid();
+        });
+
+        horizontalLayout.add(showGridButton, showOneFilm, deleteButton, addButton, editNameButton, editGenreButton);
         add(horizontalLayout);
+    }
+
+    private void editGenre() {
+        nameField = new TextField();
+        nameField.setPlaceholder("Movie title");
+        secondField = new TextField();
+        secondField.setPlaceholder("Genre to change");
+        Button editButton = new Button("Submit");
+        editButton.addClickListener(buttonClickEvent -> {
+            verticalLayout.remove(grid);
+            apiController.editGenre(nameField.getValue(), secondField.getValue());
+            nameField.setValue("");
+            secondField.setValue("");
+            createGrid();
+        });
+        verticalLayout.add(nameField, secondField, editButton);
+        add(verticalLayout);
     }
 
     private void editName() {
         nameField = new TextField();
         nameField.setPlaceholder("Title before change");
         secondField = new TextField();
-        secondField.setPlaceholder("Genre");
-        thirdField = new TextField();
-        thirdField.setPlaceholder("Title after change");
+        secondField.setPlaceholder("Title after change");
         Button editButton = new Button("Submit");
         editButton.addClickListener(buttonClickEvent -> {
-            apiController.editName(nameField.getValue(),secondField.getValue(), thirdField.getValue());
+            verticalLayout.remove(grid);
+            apiController.editName(nameField.getValue(), secondField.getValue());
+            nameField.setValue("");
+            secondField.setValue("");
+            createGrid();
         });
-        verticalLayout.add(nameField,secondField,thirdField, editButton);
+        verticalLayout.add(nameField, secondField, editButton);
         add(verticalLayout);
     }
 
@@ -91,9 +119,13 @@ public class ApiGUI extends VerticalLayout {
         secondField.setPlaceholder("Genre of movie");
         Button addButton = new Button("Submit");
         addButton.addClickListener(buttonClickEvent -> {
-            apiController.addMovie(nameField.getValue(),secondField.getValue());
+            verticalLayout.remove(grid);
+            apiController.addMovie(nameField.getValue(), secondField.getValue());
+            nameField.setValue("");
+            secondField.setValue("");
+            createGrid();
         });
-        verticalLayout.add(nameField,secondField,addButton);
+        verticalLayout.add(nameField, secondField, addButton);
         add(verticalLayout);
     }
 
@@ -102,8 +134,10 @@ public class ApiGUI extends VerticalLayout {
         nameField.setPlaceholder("Title of movie to delete");
         Button deleteMovieButton = new Button("Submit");
         deleteMovieButton.addClickListener(buttonClickEvent -> {
+            verticalLayout.remove(grid);
             apiController.deleteMovie(nameField.getValue());
-
+            nameField.setValue("");
+            createGrid();
         });
         verticalLayout.add(nameField, deleteMovieButton);
         add(verticalLayout);
@@ -151,7 +185,6 @@ public class ApiGUI extends VerticalLayout {
         Grid.Column<Movie> genreColumn = grid.addColumn(Movie::getMovieGenre).setHeader("Gatunek");
 
     }
-
 
 
 }

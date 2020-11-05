@@ -2,8 +2,6 @@ package pl.tkaczyk.zaliczenie;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -31,7 +29,8 @@ public class ApiController {
     }
 
     public void deleteMovie(String title) {
-        restTemplate.getForObject("https://pkowaleckimoviesapi.herokuapp.com/movie/deleteMovie/" + title, Movie.class);
+        String url = "https://pkowaleckimoviesapi.herokuapp.com/movie/deleteMovie/" + title;
+        restTemplate.delete(url);
     }
 
     private List<Movie> getMovieList(List<Movie> movieList, Movie[] movies) {
@@ -54,11 +53,17 @@ public class ApiController {
         ResponseEntity<Movie> responseEntity = restTemplate.postForEntity(url, movie1, Movie.class);
     }
 
-//    public void editName(String prevTitle,String genre ,String title) {
-//        String url = "localhost:8081/movie/editMovie/" + prevTitle;
-//        Movie movie1 = new Movie();
-//        movie1.setMovieName(title);
-//        ResponseEntity<Movie> responseEntity = restTemplate.postForEntity(url, movie1, Movie.class);
-//    }
+    public void editName(String prevTitle, String title) {
+        String url = "https://pkowaleckimoviesapi.herokuapp.com/movie/editMovie/" + prevTitle;
+        Movie movie1 = new Movie();
+        movie1.setMovieName(title);
+        ResponseEntity<Movie> responseEntity = restTemplate.postForEntity(url, movie1, Movie.class);
+    }
 
+    public void editGenre(String title, String genre) {
+        String url = "https://pkowaleckimoviesapi.herokuapp.com/movie/editGenre/" + title;
+        Movie movie1 = new Movie();
+        movie1.setMovieGenre(genre);
+        ResponseEntity<Movie> responseEntity = restTemplate.postForEntity(url, movie1, Movie.class);
+    }
 }
