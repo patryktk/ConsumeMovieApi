@@ -1,4 +1,4 @@
-package pl.tkaczyk.zaliczenie;
+package pl.tkaczyk.zaliczenie.model;
 
 import java.util.HashMap;
 import java.util.Map;

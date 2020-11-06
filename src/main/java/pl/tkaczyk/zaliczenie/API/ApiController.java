@@ -1,8 +1,9 @@
-package pl.tkaczyk.zaliczenie;
+package pl.tkaczyk.zaliczenie.API;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import pl.tkaczyk.zaliczenie.model.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
