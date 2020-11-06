@@ -12,7 +12,7 @@ import pl.tkaczyk.zaliczenie.model.Movie;
 import java.util.ArrayList;
 import java.util.List;
 
-@Route("Consume")
+@Route("")
 public class ApiGUI extends VerticalLayout {
 
     ApiController apiController;
