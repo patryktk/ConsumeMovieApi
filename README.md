@@ -62,3 +62,4 @@ Model aplikacji
 **configureGrid()**
 <br>Opisuję układ naszej całej tabeli, uwzględniając nazwę tabeli oraz wszystkie nazwy kolumn.<br>
 
+![Diagram](/img/diagramy.png)<br><br>
