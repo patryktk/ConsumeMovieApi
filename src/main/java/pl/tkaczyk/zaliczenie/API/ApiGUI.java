@@ -15,7 +15,7 @@ import java.util.List;
 @Route("")
 public class ApiGUI extends VerticalLayout {
 
-    ApiController apiController;
+    ApiService apiController;
     Grid<Movie> grid = new Grid<>(Movie.class);
     List<Movie> movieList = new ArrayList<>();
     private HorizontalLayout horizontalLayout;
@@ -27,7 +27,7 @@ public class ApiGUI extends VerticalLayout {
 
 
     @Autowired
-    public ApiGUI(ApiController apiController) {
+    public ApiGUI(ApiService apiController) {
         this.apiController = apiController;
         start();
 

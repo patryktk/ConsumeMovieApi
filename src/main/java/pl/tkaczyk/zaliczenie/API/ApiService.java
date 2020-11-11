@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ApiController {
+public class ApiService {
 
 
     RestTemplate restTemplate = new RestTemplate();
 
-    public ApiController() {
+    public ApiService() {
     }
 
     public List<Movie> allMovies() {
