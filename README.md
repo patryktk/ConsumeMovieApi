@@ -63,3 +63,21 @@ Model aplikacji
 <br>Opisuję układ naszej całej tabeli, uwzględniając nazwę tabeli oraz wszystkie nazwy kolumn.<br>
 
 ![Diagram](/img/diagramy.png)<br><br>
+
+Screeny z aplikacji <br>
+Strona głóna <br>
+![Strona Główna](/img/Stronagłówna.png)<br><br>
+Show Me Films <br>
+![ShowMeFilms](/img/showmefilms_pokaz.png)<br><br>
+Search For Film<br>
+![SearchForFilm](/img/searchfofilmpokaz.png)<br><br>
+Delete<br>
+![Delete](/img/Delete_pokaz.png)<br><br>
+Add<br>
+![Add_1](/img/Add_1.png)<br><br>
+![Add_2](/img/Add_2.png)<br><br>
+Edit Name<br>
+![EditName_1](/img/EditName_1.png)<br><br>
+![EditName_2](/img/EditName_2.png)<br><br>
+Edit Genre<br>
+![Diagram](/img/EditGenre_1.png)<br><br>
